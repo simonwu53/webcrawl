@@ -1,0 +1,221 @@
+/Users/simonwu/PycharmProjects/webcrawl/venv/bin/python /Users/simonwu/PycharmProjects/webcrawl/facebook/Bot.py
+Application Started...
+Initializing...
+Automation Bot Started...
+Login Success!
+Start downloading pics...
+Process: 1. Name: Wang Yuwen
+Process: 2. Name: Cristina Liu
+Process: 3. Name: Julia Martova
+Process: 4. Name: Bingqing He
+Process: 5. Name: Joe Zuo
+Process: 6. Name: Saumitra Bagchi
+Process: 7. Name: Xatia Kilanava
+Process: 8. Name: Hiromasa Saito
+Process: 9. Name: Andro Lominadze
+Process: 10. Name: Mohammad F Anagreh
+Process: 11. Name: Aria Yao
+Process: 12. Name: Ayush Jain
+Process: 13. Name: 徐贇
+Process: 14. Name: 吴陵
+Process: 15. Name: Laura Saukkonen
+Process: 16. Name: Ho Xuan Dung
+Process: 17. Name: Sky Paolo Santos
+Process: 18. Name: Kadir Aktaş
+Process: 19. Name: Kristi M. Viires
+Process: 20. Name: Buka Avanashvili
+Process: 21. Name: Zhen Ni
+Process: 22. Name: 利國楙
+Process: 23. Name: Daniel Skopalík
+Process: 24. Name: Jiangyan Shi
+Process: 25. Name: Heikki Saul
+Process: 26. Name: Go Akira
+Process: 27. Name: 史佩义
+Process: 28. Name: Lu Bai
+Process: 29. Name: Badmus Idris Oluwasegun
+Process: 30. Name: Judy Liu
+Process: 31. Name: Gevo Oo
+Process: 32. Name: Queenie Zheng
+Process: 33. Name: Tang Wen Shi
+Process: 34. Name: Sten Krüüner
+Process: 35. Name: Rain Eric Haamer
+Process: 36. Name: Yutao Feng
+Process: 37. Name: Annabel Tsai
+Process: 38. Name: Birger Pommerenke
+Process: 39. Name: Rezwan UL
+Process: 40. Name: 袁程成
+Process: 41. Name: Kwasi Newton
+Process: 42. Name: Natsuko Vähi
+Process: 43. Name: Tashi D. Gyeltshen
+Process: 44. Name: 徐樱珠
+Process: 45. Name: Jenny Elliff
+Process: 46. Name: Madina Al
+Process: 47. Name: Tracy Wang
+Process: 48. Name: Rahul Puniani
+Process: 49. Name: Lauri Lepp
+Process: 50. Name: Martin Kryl
+Process: 51. Name: Sevara Tursunbayeva
+Process: 52. Name: Artur Loorpuu
+Process: 53. Name: Peter Lecter
+Process: 54. Name: Sriyal Himesh Jayasinghe
+Process: 55. Name: Farkın Furkan
+Process: 56. Name: Hanwen Fan
+Process: 57. Name: Italo Vega
+Process: 58. Name: Margus Sellin
+Process: 59. Name: 钱月亮
+Process: 60. Name: Anson Lin
+Process: 61. Name: Kristo Visnapuu
+Process: 62. Name: 陈文麟
+Process: 63. Name: Henri Muldre
+Process: 64. Name: Stan Wu
+Process: 65. Name: Ryan Elliff
+Process: 66. Name: Walter Wang
+Process: 67. Name: 鍾筱娟
+Process: 68. Name: Tricia JM Choe
+Process: 69. Name: Karoliine Kurvits
+Process: 70. Name: Nesrin Kalender
+Process: 71. Name: Emre Ağ
+Process: 72. Name: Ucha Vekua
+Process: 73. Name: Agata Golec
+Process: 74. Name: Eren Kösedağı
+Process: 75. Name: Mwaura Job
+Process: 76. Name: Andrei Jasnev
+Process: 77. Name: Gürcan Güleç
+Process: 78. Name: Yiwen Gao
+Process: 79. Name: Madis Kaspar Nigol
+Process: 80. Name: Miki Kubo
+Process: 81. Name: Siiri-Liis Kivits
+Process: 82. Name: Aleksandr Luigas
+Process: 83. Name: Jessica Helemaa
+Process: 84. Name: Hyeongsu Kim
+Process: 85. Name: Mengyan Chen
+Process: 86. Name: Qingxuan Ji
+Process: 87. Name: Tingting Jia
+Process: 88. Name: Jiasheng Wang
+Process: 89. Name: 劉紅苓
+Process: 90. Name: Cao Yanjun
+Process: 91. Name: Kerim Yiğit Özsoy
+Process: 92. Name: Siyi Ma
+Process: 93. Name: 林曉芳
+Process: 94. Name: Karel Veselý
+Process: 95. Name: Henri Liiv
+Process: 96. Name: Yangpeng Miao
+Process: 97. Name: 呂艾璇
+Process: 98. Name: YU Sitong
+Process: 99. Name: Silvar Muru
+Process: 100. Name: Hao Wu
+Process: 101. Name: Pan Gao
+Process: 102. Name: Simona Tóthová
+Process: 103. Name: Tatev Ishikyan
+Process: 104. Name: 孫超男
+Process: 105. Name: McGrady Shi
+Process: 106. Name: Wenjing Cai
+Process: 107. Name: 朱捷
+Process: 108. Name: Jay Zhao
+Process: 109. Name: 孙星成
+Process: 110. Name: Veiko Poom
+Process: 111. Name: Amy Li
+Process: 112. Name: Kris Reiman
+Process: 113. Name: Martin Sodor
+Process: 114. Name: Doruk Kara
+Process: 115. Name: Tomáš Františák
+Process: 116. Name: Mathias Luik
+Process: 117. Name: Sandra Schumann
+Process: 118. Name: 梁海文
+Process: 119. Name: Viola Qian
+Process: 120. Name: 黄意嵐
+Process: 121. Name: Nadin Puchnina
+Process: 122. Name: Amy Wong
+Process: 123. Name: Zhanar Tastanova
+Process: 124. Name: Martin Juul
+Process: 125. Name: Koit-Georg Hakuna Matata Peterson
+Process: 126. Name: Bingzheng  Liu
+Process: 127. Name: 孟强
+Process: 128. Name: Ahmed Amin
+Process: 129. Name: Lu Lu
+Process: 130. Name: Carl-Hendric Hein
+Process: 131. Name: 孫玥
+Process: 132. Name: Marike Schwickardi
+Process: 133. Name: 叶圣鸣
+Process: 134. Name: 钱蓓昊
+Process: 135. Name: Jolana Kaljurand
+Process: 136. Name: Fawjan Khan
+Process: 137. Name: Jinsoo  Jeon
+Process: 138. Name: Andre Tšernikov
+Process: 139. Name: Ali Çaldıran
+Process: 140. Name: 刘报
+Process: 141. Name: Kevin Liu
+Process: 142. Name: Fangyi Ren
+Process: 143. Name: Ivan Maeder
+Process: 144. Name: Naomi Kaneko
+Process: 145. Name: Priit Pärnpuu
+Process: 146. Name: Lance Wang
+Process: 147. Name: Katharina Evpovar
+Process: 148. Name: Kathrin Müller
+Process: 149. Name: Kamil Skorupa
+Process: 150. Name: Chen Liang
+Process: 151. Name: Hannes Kold
+Process: 152. Name: Oumaima Zahouane
+Process: 153. Name: Chen Fu
+Process: 154. Name: Ilja Haritonov
+Process: 155. Name: Artur Luik
+Process: 156. Name: Mart Merelaid
+Process: 157. Name: Sten Sinimets
+Process: 158. Name: Xinrui Wang
+Process: 159. Name: 周涛
+Process: 160. Name: 王彤彤
+Process: 161. Name: 赵菁
+Process: 162. Name: Anli Wang
+Process: 163. Name: Christine Li
+Process: 164. Name: Skye Chen
+Process: 165. Name: Dio Zhao
+Process: 166. Name: Yijing Chen
+Process: 167. Name: Christie Su
+Process: 168. Name: Guo Dayu
+Process: 169. Name: Xia Ciarian
+Process: 170. Name: Clark Ni Jia
+Process: 171. Name: Jasmine Hu
+Process: 172. Name: 劉紅苓
+Process: 173. Name: Jiayi LI
+Process: 174. Name: Edison Yu
+Process: 175. Name: Jessie Yan
+Process: 176. Name: Leon Yeung
+Process: 177. Name: Kevin Bom
+Process: 178. Name: Frank  Zhang
+Process: 179. Name: 徐唯
+Process: 180. Name: Yifan  Feng
+Process: 181. Name: Aphra An
+Process: 182. Name: 朱凤仪
+Process: 183. Name: Jamal Luo
+Process: 184. Name: Maksime  Zhang
+Process: 185. Name: Jared Lu
+Process: 186. Name: 李泽宸
+Process: 187. Name: Aileen Rong
+Process: 188. Name: Xinlei Wang
+Process: 189. Name: Wesly Le
+Process: 190. Name: Lee Sun
+Process: 191. Name: 史佩义
+Process: 192. Name: Dean Gao
+Process: 193. Name: เหงา หัวจัย ดวงเท่าเดิม
+Process: 194. Name: Amanda  Huang
+Process: 195. Name: Yihao Yu
+Process: 196. Name: Rachel Chen
+Process: 197. Name: Young Hóng
+Process: 198. Name: Idealism Wu
+Process: 199. Name: Richard Li
+Process: 200. Name: Fanz Wang
+Process: 201. Name: Heather Cheng
+Process: 202. Name: Helen  Liu
+Process: 203. Name: Yingyan Hu
+Process: 204. Name: Yang Zhang
+Process: 205. Name: Shio Kin
+Process: 206. Name: Ivan Chen
+Process: 207. Name: Haosheng LI
+Process: 208. Name: Zhuang Amber
+Process: 209. Name: Allen Lee
+All pics downloaded!
+Application Stopped. Processing time: 108.661650 mins
+Press enter to terminate...
+Bye:)
+
+Process finished with exit code 0

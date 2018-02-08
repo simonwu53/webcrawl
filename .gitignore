@@ -1,0 +1,9 @@
+
+.DS_Store
+.idea/
+venv/
+facebook/pics/
+facebook/.DS_Store
+facebook/cookies.pkl
+facebook/friendlist.txt
+currency/.DS_Store
