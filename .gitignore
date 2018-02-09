@@ -7,3 +7,5 @@ facebook/.DS_Store
 facebook/cookies.pkl
 facebook/friendlist.txt
 currency/.DS_Store
+currency/dump.py
+currency/ghostdriver.log
