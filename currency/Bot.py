@@ -13,7 +13,8 @@ class Bot:
         # price list dict -> {bank name: [last 24 hrs currency]}
         self.pricelist = {'工商银行': [], '中国银行': [], '农业银行': [], '交通银行': [], '建设银行': [], '招商银行': [], '光大银行': [],
                           '浦发银行': [], '兴业银行': [], '中兴银行': []}
-        self.phantomjs = webdriver.PhantomJS()
+        # self.phantomjs = webdriver.PhantomJS()
+        self.phantomjs = None  # web driver, start later
         self.min = 800  # best deal
         self.bank = 'Null'  # which bank
         self.trend = 'Increase'
@@ -21,7 +22,6 @@ class Bot:
         self.stable = True
         # target price
         self.target = float(770)
-        print('PhantomJS Started.')
 
     def check_currency(self):
         self.phantomjs.get("http://finance.sina.com.cn/forex/paijia.html#0")
@@ -163,9 +163,14 @@ class Bot:
         self.target = float(target)
         return
 
+    def start(self):
+        self.phantomjs = webdriver.PhantomJS()
+        print('Browser Opened.')
+        return
+
     def quit(self):
         self.phantomjs.quit()
-        print('Bye:)')
+        print('Browser Closed.')
         return
 
 

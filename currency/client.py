@@ -138,12 +138,14 @@ class Client:
 
     def refresh_currency(self):
         self.pricelist = None
+        self.bot.start()
         # get price list
         while True:
             self.pricelist = self.bot.get_pricelist()
             if self.pricelist:
                 break
         bank, mini, trend, se_var = self.bot.get_statistics()
+        self.bot.quit()
 
         # update ui
         for index, item in enumerate(self.pricelist):
