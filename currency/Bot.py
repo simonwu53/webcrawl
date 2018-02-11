@@ -4,6 +4,7 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.remote.errorhandler import NoSuchElementException
 from bs4 import BeautifulSoup
 import numpy as np
+import urllib.request
 
 
 class Bot:
@@ -16,9 +17,10 @@ class Bot:
         self.min = 800  # best deal
         self.bank = 'Null'  # which bank
         self.trend = 'Increase'
+        self.se_var = 0
         self.stable = True
-        # input target price
-        self.target = float(input('Your expected price is: \n'))
+        # target price
+        self.target = float(770)
         print('PhantomJS Started.')
 
     def check_currency(self):
@@ -52,27 +54,31 @@ class Bot:
                 print('Price List Updated.')
                 # display data
                 self.statistics()
-                time.sleep(120)
+                # finishing loop
+                time.sleep(900)
         except KeyboardInterrupt as e:
             print('Ctrl + C Issued...')
 
     def statistics(self):
+        print('----------------------------------------------------')
+        print(time.asctime(time.localtime(time.time())))
         print('Current best deal is: %s: %f.' % (self.bank, self.min))
-        icbc_list = self.pricelist['工商银行']
-        if len(icbc_list) >= 12:
-            first = icbc_list[-12]
-            last = icbc_list[-1]
+        bank_list = self.pricelist[self.bank]
+        if len(bank_list) >= 12:
+            first = bank_list[-12]
+            last = bank_list[-1]
             if first - last < 0:
                 self.trend = 'Increase'
             else:
                 self.trend = 'Decrease'
-            var = np.var(icbc_list)
-            if var <= 0.01:
+            self.se_var = np.var(bank_list)
+            if self.se_var <= 0.01:
                 self.stable = True
             else:
                 self.stable = False
         else:
             print('Not Enough Data for Statistics.')
+            print('----------------------------------------------------')
             return
         if self.trend == 'Increase':
             print('Rate Trend: %s.' % self.trend)
@@ -90,7 +96,56 @@ class Bot:
                     print('Now at low point, but still higher than expected.')
             else:
                 print('Still decreasing, suggest waiting for more time.')
+        print('----------------------------------------------------')
         return
+
+    def get_pricelist(self):
+        self.phantomjs.get("http://finance.sina.com.cn/forex/paijia.html#0")
+        print('Getting Price List...')
+        time.sleep(1)
+        # brew soup
+        soup = BeautifulSoup(self.phantomjs.page_source, 'lxml')
+        try:
+            rmb2euro = soup.find_all('table', class_='js-table')[1]
+        except IndexError as e:
+            self.phantomjs.get('https://www.google.ee')
+            print('Getting List Failed...')
+            return None
+        # extract price list
+        try:
+            eurosell = rmb2euro.tbody.tr.next_sibling.next_sibling.next_sibling.next_sibling.children
+        except AttributeError as e:
+            self.phantomjs.get('https://www.google.ee')
+            print('Getting List Failed...')
+            return None
+        print('List Got.')
+        eurosell_list = [price for price in eurosell]
+        # collect data
+        for index, item in enumerate(self.pricelist):
+            ratelist = self.pricelist[item]
+            price = float(eurosell_list[index].string)
+            if price < self.min:
+                self.min = price
+                self.bank = item
+            ratelist.append(price)
+        self.phantomjs.get('https://www.google.ee')
+        return self.pricelist
+
+    def get_statistics(self):
+        bank_list = self.pricelist[self.bank]
+        if len(bank_list) >= 12:
+            first = bank_list[-12]
+            last = bank_list[-1]
+            if first - last < 0:
+                self.trend = 'Increase'
+            else:
+                self.trend = 'Decrease'
+            self.se_var = np.var(bank_list)
+        else:
+            self.trend = 'None'
+            self.se_var = 'None'
+        print('Getting Statistics...')
+        return self.bank, str(self.min), self.trend, str(self.se_var)
 
     @staticmethod
     def save_websource(path, url):
@@ -102,6 +157,10 @@ class Bot:
         print('Web Source saved!')
         time.sleep(1)
         chrome.quit()
+        return
+
+    def set_target(self, target):
+        self.target = float(target)
         return
 
     def quit(self):

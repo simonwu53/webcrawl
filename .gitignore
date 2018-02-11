@@ -9,3 +9,4 @@ facebook/friendlist.txt
 currency/.DS_Store
 currency/dump.py
 currency/ghostdriver.log
+currency/__pycache__
