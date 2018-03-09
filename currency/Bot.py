@@ -9,7 +9,7 @@ import urllib.request
 
 class Bot:
     def __init__(self):
-        print('Application Started.')
+        print('Application Launched.')
         # price list dict -> {bank name: [last 24 hrs currency]}
         self.pricelist = {'工商银行': [], '中国银行': [], '农业银行': [], '交通银行': [], '建设银行': [], '招商银行': [], '光大银行': [],
                           '浦发银行': [], '兴业银行': [], '中兴银行': []}
@@ -25,6 +25,7 @@ class Bot:
 
     def check_currency(self):
         self.phantomjs.get("http://finance.sina.com.cn/forex/paijia.html#0")
+        time.sleep(2)  # load js
         try:
             print('Starting subscribing CNY/EUR exchange rate...')
             while True:
@@ -44,6 +45,7 @@ class Bot:
                 eurosell_list = [price for price in eurosell]
 
                 # collect data
+                self.min = float(eurosell_list[0].string)
                 for index, item in enumerate(self.pricelist):
                     ratelist = self.pricelist[item]
                     price = float(eurosell_list[index].string)
@@ -133,8 +135,8 @@ class Bot:
 
     def get_statistics(self):
         bank_list = self.pricelist[self.bank]
-        if len(bank_list) >= 12:
-            first = bank_list[-12]
+        if len(bank_list) >= 2:
+            first = bank_list[0]
             last = bank_list[-1]
             if first - last < 0:
                 self.trend = 'Increase'

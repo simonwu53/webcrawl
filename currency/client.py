@@ -1,5 +1,6 @@
 import tkinter
 from tkinter import font
+from tkinter import messagebox
 from currency import Bot
 import time
 import threading
@@ -20,11 +21,16 @@ class Client:
 
         # time_frame
         self.time_title = tkinter.Label(self.time_frame, text='Current Time: ')
-        self.time_title.grid(row=0, column=0)
+        self.time_title.grid(row=0, column=0, sticky=tkinter.W)
         self.time_var = tkinter.StringVar()
         self.time_label = tkinter.Label(self.time_frame, textvariable=self.time_var)
         self.time_label.grid(row=1, column=0)
         self.time_run()
+
+        self.remain_time = tkinter.StringVar()
+        self.remain_time.set('Next Update: None')
+        self.remain_time_label = tkinter.Label(self.time_frame, textvariable=self.remain_time)
+        self.remain_time_label.grid(row=2, column=0, sticky=tkinter.W)
 
         # statistics_frame
         self.min_var = tkinter.StringVar()
@@ -126,15 +132,76 @@ class Client:
         self.zx_label.bind("<Button-1>", self.show_charts)
         self.label_collection.append(self.zx)
 
+        # configurations & settings
+        self.time_entry = tkinter.Entry(self.table_frame)
+        self.time_entry.insert(tkinter.END, 'Set update interval(in mins)')
+        self.time_entry.grid(row=4, column=0, columnspan=3, sticky=tkinter.NSEW)
+        self.time_entry.bind("<Button-1>", self.select_entry)
+        self.settime_button = tkinter.Button(self.table_frame, text='Set', command=self.set_refresh_time)
+        self.settime_button.grid(row=4, column=3, columnspan=2, sticky=tkinter.NSEW)
+
+        self.start_button = tkinter.Button(self.table_frame, text='Start', command=self.start_stop)
+        self.start_button.grid(row=5, column=0, columnspan=5, sticky=tkinter.NSEW)
+
         self.refresh = tkinter.Button(self.table_frame, text='Refresh', command=self.refresh_currency)
-        self.refresh.grid(row=4, column=0, columnspan=5, sticky=tkinter.NSEW)
+        self.refresh.grid(row=6, column=0, columnspan=5, sticky=tkinter.NSEW)
+
         self.quit = tkinter.Button(self.table_frame, text='Quit', command=self.quit_client)
-        self.quit.grid(row=5, column=0, columnspan=5, sticky=tkinter.NSEW)
+        self.quit.grid(row=7, column=0, columnspan=5, sticky=tkinter.NSEW)
 
         # init
+        self.isstarted = False
+        self.auto_refresh = None
+        self.auto_refresh2 = None
+        self.refresh_time = 900000
+        self.countdown = None
         self.pricelist = None
         self.bot = Bot.Bot()
-        self.refresh_currency()
+
+    def select_entry(self, e=None):
+        self.time_entry.delete(0, tkinter.END)
+        return
+
+    def set_refresh_time(self):
+        # get user input
+        try:
+            userinput = int(self.time_entry.get())
+        except ValueError as e:
+            messagebox.showerror('Invalid Value!', 'Please input a int number')
+            return
+        self.time_entry.delete(0, tkinter.END)
+        self.time_entry.insert(tkinter.END, 'Set update interval(in mins)')
+        # update variable
+        self.refresh_time = userinput * 60 * 1000
+        # clear old refresh
+        if self.auto_refresh is not None:
+            self.refresh.after_cancel(self.auto_refresh)
+        self.auto_refresh = self.refresh.after(self.refresh_time, self.refresh_currency)
+        messagebox.showinfo('Set Complete!', 'Your updating interval is %d mins.' % userinput)
+        self.master.focus()
+        # reset countdown
+        self.reset_remain_time()
+        return
+
+    def start_stop(self):
+        if self.isstarted:
+            self.isstarted = False
+            self.start_button['text'] = 'Start'
+            # cancel auto update
+            if self.auto_refresh is not None:
+                self.refresh.after_cancel(self.auto_refresh)
+                self.auto_refresh = None
+            if self.auto_refresh2 is not None:
+                self.remain_time_label.after_cancel(self.auto_refresh2)
+                self.auto_refresh2 = None
+                self.remain_time.set('Next Update: None')
+            print('Stopped.')
+        else:
+            self.isstarted = True
+            print('Started.')
+            self.start_button['text'] = 'Stop'
+            self.refresh_currency()  # start fetching
+        return
 
     def refresh_currency(self):
         self.pricelist = None
@@ -155,14 +222,14 @@ class Client:
         self.se_var.set('Squared Error: %s' % se_var)
 
         # refresh
-        self.refresh.after(900000, self.refresh_currency)
+        self.auto_refresh = self.refresh.after(self.refresh_time, self.refresh_currency)
+        self.reset_remain_time()
 
     def show_charts(self, e=None):
         chartview = Charts(self.master, self.pricelist)
         return
 
     def quit_client(self):
-        self.bot.quit()
         self.master.quit()
         pass
 
@@ -170,6 +237,21 @@ class Client:
         localtime = time.asctime(time.localtime(time.time()))
         self.time_var.set(localtime)
         self.master.after(1000, self.time_run)
+
+    def reset_remain_time(self):
+        if self.auto_refresh2 is not None:
+            self.remain_time_label.after_cancel(self.auto_refresh2)
+            self.auto_refresh2 = None
+        self.countdown = self.refresh_time / 1000
+        self.remain_time_update()  # start remaining time countdown
+        return
+
+    def remain_time_update(self):
+        m, s = divmod(self.countdown, 60)
+        self.remain_time.set('Next Update: %02d:%02d' % (m, s))
+        self.countdown -= 1
+        self.auto_refresh2 = self.remain_time_label.after(1000, self.remain_time_update)
+        return
 
 
 class Charts:
@@ -198,10 +280,16 @@ class Charts:
         self.c.delete('all')
         bank = self.selected.get()
         data = self.pricelist[bank]
+        minimum = min(data)
+        maximum = max(data)
         interval = int(300 / (len(data) + 1))
         pos_x = interval
         for point in data:
-            pos_y = int(100 - float(point) / 10)
+            if maximum == minimum:
+                height = 50
+            else:
+                height = (float(point) - minimum) / (maximum - minimum) * 100
+            pos_y = int(100 - height)
             self.c.create_rectangle(pos_x, pos_y, pos_x+10, 100, fill="blue")
             self.c.create_text(pos_x, pos_y, font=('Helvetica', 8), anchor=tkinter.SW, text=str(point))
             pos_x += interval
